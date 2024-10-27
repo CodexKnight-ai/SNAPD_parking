@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Adventure';
+    src: url('../public/Fonts/adventure/Adventure.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Ovo';
+    src: url('../public/Fonts/Ovo/OFL.txt') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Poppins';
+    src: url('../public/Fonts/poppins/Poppins-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
