@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Adventure';
+    src: url('../public/Fonts/adventure/Adventure.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Ovo';
+    src: url('../public/Fonts/Ovo/OFL.txt') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Poppins';
+    src: url('../public/Fonts/poppins/Poppins-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Bosch';
+    src: url('../public/Fonts/bosch-display-font/Bosch-Display-Font/OTF-File/Bosch.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .custom-cursor {
+    cursor: url('../public/1-cur1162/cur1162_page_01.png'), auto;
+  }
+  
