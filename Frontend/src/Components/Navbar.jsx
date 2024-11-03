@@ -1,7 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"; 
+import { logout } from '../store/authSlice'; 
 
 function Navbar() {
+  const dispatch = useDispatch(); 
+  const navigate = useNavigate();
+  const { status, userData } = useSelector((state) => state.auth); 
+
+  const handleLogout = () => {
+    dispatch(logout()); 
+    navigate('/login'); 
+  };
+
   return (
     <div className="w-full h-20 p-4 bg-navbar top-0 fixed shadow-xl shadow-black flex px-6">
       <div className="w-1/3 h-full flex gap-1 items-center justify-start">
@@ -51,8 +62,23 @@ function Navbar() {
         </li>
       </ul>
       <ul className="w-1/4 flex justify-end items-center text-black text-lg gap-4 font-poppins">
-        <li className="bg-[#92E1E2] px-4 py-2 rounded-full">SignUp</li>
-        <li className="bg-[#92E1E2] px-4 py-2 rounded-full">Login</li>
+        {status ? ( 
+          <>
+            <li className="text-white">Welcome, {userData.username}</li>
+            <li className="bg-[#00CED1] px-4 py-2 rounded-full hover:bg-[#00BFFF]" onClick={handleLogout}>
+              Logout
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="bg-[#00CED1] px-4 py-2 rounded-full hover:bg-[#00BFFF}">
+              <NavLink to='/login'>Login</NavLink>
+            </li>
+            <li className="bg-[#00CED1] px-4 py-2 rounded-full hover:bg-[#00BFFF}">
+              <NavLink to='/signup'>SignUp</NavLink>
+            </li>
+          </>
+        )}
       </ul>
     </div>
   );

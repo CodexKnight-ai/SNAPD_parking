@@ -43,6 +43,8 @@ function Footer() {
             <ul className="font-poppins text-sm text-gray-700">
               <li>aaryan.k@ahduni.edu.in</li>
               <li>dhruval.b@ahduni.edu.in</li>
+              <li>nirav.s@ahduni.edu.in</li>
+              <li>priyanshu.v@ahduni.edu.in</li>
               <li>subrat.j@ahduni.edu.in</li>
             </ul>
           </div>

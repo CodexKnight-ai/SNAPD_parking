@@ -13,6 +13,7 @@ export default {
         bosch:['Bosch'],
       },
       colors:{
+        daisy:'#FAFAFA',
         navbar:'#041228',
         primary:'#031E51',
         secondary:'#141321',

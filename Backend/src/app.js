@@ -1,16 +1,27 @@
-import express from "express"
-import cors from "cors"
-import cookieParser from "cookie-parser"
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
+
+// Check if the environment variable is loaded
+
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
-    credentials:true,
-}))
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+}));
 
-app.use(express.json({limit: "16kb"}))
-app.use(express.urlencoded({extended: true, limit: "16kb"}))
-app.use(express.static("public"))
-app.use(cookieParser())
+app.use(express.json({ limit: "16kb" }));
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+app.use(express.static("public"));
+app.use(cookieParser());
 
-export { app }
+import userRouter from "../src/routes/user.routes.js";
+
+app.use("/api/v1/users/", userRouter);
+
+export { app };
