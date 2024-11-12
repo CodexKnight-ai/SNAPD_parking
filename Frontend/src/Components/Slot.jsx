@@ -37,8 +37,8 @@ function Slot() {
                     onClick={() => handleClick(floorIndex * 4 + index)}
                     className={
                       slots[floorIndex * 4 + index]
-                        ? "bg-red-500 w-32 h-40 rounded-xl"
-                        : "bg-slate-500 w-32 h-40 rounded-xl"
+                        ? "bg-red-800 w-32 h-40 rounded-xl"
+                        : "bg-green-800 w-32 h-40 rounded-xl"
                     }
                   ></div>
                 ))}
@@ -50,18 +50,18 @@ function Slot() {
                     onClick={() => handleClick(floorIndex * 4 + index)}
                     className={
                       slots[floorIndex * 4 + index]
-                        ? "bg-red-500 w-40 h-32 rounded-xl"
-                        : "bg-slate-500 w-40 h-32 rounded-xl"
+                        ? "bg-red-800 w-40 h-32 rounded-xl"
+                        : "bg-green-800 w-40 h-32 rounded-xl"
                     }
                   ></div>
                 ))}
               </div>
-              <div className="flex gap-6 justify-between bg-slate-800 font-poppins text-2xl mt-6">
-                <span className="bg-slate-600 w-1/4 h-14 text-white text-center my-auto">
+              <div className="flex gap-6 justify-between bg-slate-800 font-poppins text-2xl mt-6 rounded-lg">
+                <span className="bg-slate-600 w-1/4 h-14 text-white text-center my-auto py-3 rounded-lg">
                   Gate 1
                 </span>
                 {floorIndex < 2 && (
-                  <span className="bg-slate-600 w-1/4 h-14 text-white text-center my-auto">
+                  <span className="bg-slate-600 w-1/4 h-14 text-white text-center my-auto py-3 rounded-lg">
                     Gate 2
                   </span>
                 )}

@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className='overflow-x-hidden'>
         <Model/>
-        <Content/>      
+        {/* <Content/>       */}
     </div>
   )
 }
