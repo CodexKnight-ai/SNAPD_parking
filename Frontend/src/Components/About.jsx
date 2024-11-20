@@ -3,7 +3,7 @@ import Name from "./Name";
 
 function About() {
   return (
-    <div className="bg-primary w-full h-fit mt-20 p-10">
+    <div className="bg-primary w-[100%] h-fit mt-20 p-10">
       <div className="w-full h-fit px-10 py-4">
         <h1 className="font-adventure text-white text-7xl">What the heck is SNAPD?</h1>
         <h3 className="font-poppins text-white text-2xl flex gap-5 items-center">

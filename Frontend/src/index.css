@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* *{
+   text-wrap:pretty;
+} */
 @font-face {
     font-family: 'Adventure';
     src: url('../public/Fonts/adventure/Adventure.otf') format('opentype');

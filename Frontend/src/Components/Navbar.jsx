@@ -15,14 +15,14 @@ function Navbar() {
   };
 
   return (
-    <div className="w-full h-20 p-4 bg-navbar top-0 fixed shadow-xl shadow-black flex px-6 z-50">
+    <div className="w-full h-20 p-4 bg-navbar top-0 fixed shadow-xl shadow-black flex justify-between px-6 z-50">
       <div className="w-1/3 h-full flex gap-1 items-center justify-start">
         <img className="h-full w-auto rounded-full" src="/logo.png" alt="Logo" />
-        <p className="text-white text-4xl font-bosch">Parking System</p>
+        <p className=" w-auto text-nowrap text-white text-2xl font-bosch sm:text-4xl">Parking System</p>
       </div>
       
       {/* Navigation links for larger screens */}
-      <ul className="w-1/2 flex justify-around items-center text-white text-lg font-poppins hidden md:flex">
+      <ul className="w-1/2 justify-around items-center text-white text-lg font-poppins hidden md:flex">
         <li>
           <NavLink 
             to="/" 

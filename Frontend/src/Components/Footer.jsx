@@ -2,21 +2,21 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex flex-col overflow-hidden w-full">
+    <div className="flex flex-col overflow-hidden w-full ">
       <div className="bg-[#C1C1BD] w-full flex justify-between px-10 py-2">
         <div className="w-fit">
-          <div className="flex items-center">
+          <div className="flex flex-col items-center w-1/3 md:flex-row">
             <img
               className="h-20 w-auto rounded-full"
               src="/logo.png"
               alt="Logo"
             />
-            <span className="font-adventure text-gray-700 text-3xl ml-4">
+            <span className="font-adventure text-gray-700 text-3xl pl-4">
               Parking System
             </span>
           </div>
         </div>
-        <p className="w-fit h-auto my-auto font-poppins text-gray-700">
+        <p className="w-fit h-auto my-auto hidden font-poppins text-gray-700 sm:visible">
           ENR 206 Sensors, Instruments and Experimentation, 2024
         </p>
         <div className="w-fit flex gap-8">
