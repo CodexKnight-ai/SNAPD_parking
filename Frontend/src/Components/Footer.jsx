@@ -5,7 +5,7 @@ function Footer() {
     <div className="flex flex-col overflow-hidden w-full ">
       <div className="bg-[#C1C1BD] w-full flex justify-between px-10 py-2">
         <div className="w-fit">
-          <div className="flex flex-col items-center w-1/3 md:flex-row">
+          <div className="flex flex-col items-center w-1/3">
             <img
               className="h-20 w-auto rounded-full"
               src="/logo.png"
@@ -16,7 +16,7 @@ function Footer() {
             </span>
           </div>
         </div>
-        <p className="w-fit h-auto my-auto hidden font-poppins text-gray-700 sm:visible">
+        <p className="w-fit h-auto my-auto font-poppins text-gray-700 ">
           ENR 206 Sensors, Instruments and Experimentation, 2024
         </p>
         <div className="w-fit flex gap-8">
@@ -31,7 +31,7 @@ function Footer() {
                   href="https://github.com/CodexKnight-ai/SNAPD_parking"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline text-gray-700 hover:text-blue-400"
+                  className="underline text-gray-700 hover:text-blue-600"
                 >
                   {" "}Github
                 </a>

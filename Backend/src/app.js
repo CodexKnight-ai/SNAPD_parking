@@ -1,27 +1,27 @@
-import express from "express";
+
+import express from 'express';
+import userRouter from './routes/user.routes.js';
+import slotRouter from './routes/slot.routes.js';
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 
-// Load environment variables from .env file
 dotenv.config();
-
 const app = express();
-
-// Check if the environment variable is loaded
-
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
 }));
-
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-import userRouter from "../src/routes/user.routes.js";
+// Routes
+app.use('/api/v1/users/', userRouter);
+app.use('/api/v1/slots/', slotRouter);
 
-app.use("/api/v1/users/", userRouter);
+// Serial Port Configuration
+
 
 export { app };
