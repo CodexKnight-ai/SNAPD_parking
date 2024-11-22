@@ -2,7 +2,6 @@
 import dotenv from "dotenv";
 import connectDB from "./database/index.js";
 import { app } from "./app.js";
-// import mongoose from "mongoose";
 import { SerialPort } from "serialport";
 import { ReadlineParser } from "@serialport/parser-readline";
 import { parkingSlot } from "./models/slots.model.js";

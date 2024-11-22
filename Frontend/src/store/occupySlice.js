@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  space: 12, 
+  space: 8, 
 };
 
 const occuSlice = createSlice({
@@ -15,7 +15,7 @@ const occuSlice = createSlice({
       }
     },
     spaceEmpty: (state) => {
-      if (state.space < 12) {
+      if (state.space < 8) {
         state.space += 1;
         console.log("Emptying space. New available:", state.space);
       }

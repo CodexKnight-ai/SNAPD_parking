@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
@@ -33,7 +33,8 @@ function SignUp() {
       });
 
       alert("Registration successful!");
-      console.log(response.data);
+      Navigate('/login');
+      // console.log(response.data);
     } catch (error) {
       setError(error.response?.data?.message || "Registration failed.");
     } finally {

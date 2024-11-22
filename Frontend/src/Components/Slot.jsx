@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { spaceEmpty, spaceFill } from "../store/occupySlice";
 
@@ -6,38 +7,50 @@ function Slot() {
   const { space } = useSelector((state) => state.occupy);
   const dispatch = useDispatch();
 
-  // State for slots: { id, isOccupied } for each slot
+  // State for slots
   const [slots, setSlots] = useState([]);
 
-  // Fetch slots from backend
+  // Fetch slots from the backend
+  const fetchSlots = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/v1/slots/");
+      const slotArr = response.data.statuses;
+      setSlots(slotArr);
+
+      // Update Redux state based on slots
+      const occupiedSlots = slotArr.filter((slot) => slot.isOccupied).length;
+      dispatch({ type: "occupy/spaceFill", payload: occupiedSlots });
+    } catch (error) {
+      console.error("Error fetching slots:", error);
+    }
+  };
+
+  // Fetch slot statuses every 3 seconds
   useEffect(() => {
-    const fetchSlots = async () => {
-      try {
-        const response = await fetch("/api/v1/slots");
-        const data = await response.json();
-        setSlots(data.slots); // Assume backend returns { slots: [{ id, isOccupied }] }
-      } catch (error) {
-        console.error("Error fetching slots:", error);
-      }
-    };
-    fetchSlots();
+    fetchSlots(); // Fetch initially
+    const interval = setInterval(fetchSlots, 3000); // Fetch every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   // Handle slot click to toggle status
   const handleClick = async (index) => {
     const updatedSlots = [...slots];
-    updatedSlots[index].isOccupied = !updatedSlots[index].isOccupied;
+    const slot = updatedSlots[index];
+
+    // Toggle the status of the clicked slot
+    slot.isOccupied = !slot.isOccupied;
 
     // Update state and Redux
     setSlots(updatedSlots);
-    updatedSlots[index].isOccupied ? dispatch(spaceFill()) : dispatch(spaceEmpty());
+    slot.isOccupied ? dispatch(spaceFill()) : dispatch(spaceEmpty());
 
-    // Send update to backend
+    // Send the updated status to the backend
     try {
-      await fetch(`/api/v1/slots/${updatedSlots[index].id}/status`, {
+      await fetch(`/api/v1/slots/${slot.slotNumber}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isOccupied: updatedSlots[index].isOccupied }),
+        body: JSON.stringify({ isOccupied: slot.isOccupied }),
       });
     } catch (error) {
       console.error("Error updating slot status:", error);
@@ -49,7 +62,7 @@ function Slot() {
     <div className="bg-primary w-full h-fit mt-20 p-10 pb-20 flex flex-col justify-around gap-6">
       <div>
         <p className="font-bosch text-4xl bg-[#E2E2D2] p-4 rounded-full h-fit w-1/3 text-center bold">
-          Available Slots: {12 - space}/8
+          Available Slots: {8 - space}/8
         </p>
       </div>
       {["First Floor", "Second Floor"].map((floor, floorIndex) => (
@@ -67,7 +80,7 @@ function Slot() {
 
               return slot ? (
                 <div
-                  key={slot.id}
+                  key={slot.slotNumber}
                   onClick={() => handleClick(slotIndex)}
                   className={`${
                     slot.isOccupied ? "bg-red-800" : "bg-green-800"
