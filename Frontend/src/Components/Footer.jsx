@@ -50,7 +50,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto p-3 bg-[#121212] font-poppins text-center text-[#dcd8d8]">
+      {/* <div className="w-full h-auto p-3 bg-[#121212] font-poppins text-center text-[#dcd8d8]">
         Designed and Developed by{" "}
         <a
           href="https://www.linkedin.com/in/subrat-jain-70078b267"
@@ -61,7 +61,7 @@ function Footer() {
           Subrat Jain
         </a>
         .
-      </div>
+      </div> */}
     </div>
   );
 }
