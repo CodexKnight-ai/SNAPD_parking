@@ -22,7 +22,8 @@ function Floor({ name, slotArr }) {
             <p className="text-white text-sm font-bold">
               {isOccupied ? "Occupied" : "Available"}
             </p>
-            <p className="text-white text-sm font-bold">Slot:{index+1}</p>
+            <p className="text-white text-sm font-bold">Slot:{index + num}</p>
+            {(num+index==2 || num+index==4)?<span className="text-white text-sm font-bold">( Dummy )</span>:null}
           </div>
         ))}
       </div>
