@@ -2,7 +2,7 @@ import React from "react";
 
 function TandC() {
   return (
-    <div className="mt-10 sm:mt-20 p-6 sm:p-10 bg-primary h-full w-full text-daisy font-poppins shadow-lg">
+    <div className="mt-20 sm:mt-20 p-6 sm:p-10 bg-primary h-full w-full text-daisy font-poppins shadow-lg">
       <h2 className="text-3xl sm:text-4xl font-semibold mb-6 text-blue-300">
         Terms and Conditions
       </h2>
