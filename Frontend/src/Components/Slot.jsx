@@ -16,10 +16,10 @@ function Slot() {
   // Fetch slots from the backend
   const fetchSlots = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/v1/slots/");
+      const response = await axios.get("https://snapd-parking-1.onrender.com/api/v1/slots/");
       const slotArr = response.data.statuses;
       setSlots(slotArr);
-
+  
       // Update available slots
       const occupiedSlots = slotArr.filter((slot) => slot.isOccupied).length;
       setAvailableSlot(6 - occupiedSlots);

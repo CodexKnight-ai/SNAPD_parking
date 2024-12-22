@@ -26,7 +26,7 @@ function SignUp() {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:4000/api/v1/users/sign-up", {
+      const response = await axios.post("https://snapd-parking-1.onrender.com/api/v1/users/sign-up", {
         username: username.toLowerCase(),
         email,
         password,
