@@ -45,7 +45,7 @@ function About() {
           
         />
       <Name 
-        src="/public/Dhruval.png"
+        src="/Dhruval.png"
         name="Dhruval Barad"
         enrollment="AU2340236"
         course="BTech Computer Science"
