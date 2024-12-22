@@ -12,7 +12,7 @@ function About() {
           It’s just the first letters of our names, because we were unable to
           find anything else!
           <span>
-            <img className="h-auto w-12 sm:w-16 md:w-20 rounded-md" src="/smileCat.png" />
+            <img className="h-16 w-auto min-w-10 sm:h-20 md:h-24 rounded-md" src="/smileCat.png" />
           </span>
         </h3>
       </div>
