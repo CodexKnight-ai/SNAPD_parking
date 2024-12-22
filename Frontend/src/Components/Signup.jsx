@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SignUp() {
@@ -9,16 +9,20 @@ function SignUp() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      alert("Please fill out both fields.");
+    if (!username || !email || !password) {
+      setError("All fields are required.");
       return;
     }
+
     if (!acceptedTerms) {
-      alert("Please accept the terms and conditions.");
+      setError("You must accept the terms and conditions.");
       return;
     }
 
@@ -26,17 +30,19 @@ function SignUp() {
     setError(null);
 
     try {
-      const response = await axios.post("https://snapd-parking-1.onrender.com/api/v1/users/sign-up", {
-        username: username.toLowerCase(),
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://snapd-parking-1.onrender.com/api/v1/users/sign-up",
+        {
+          username: username.toLowerCase(),
+          email,
+          password,
+        }
+      );
 
-      alert("Registration successful!");
-      Navigate('/login');
-      // console.log(response.data);
-    } catch (error) {
-      setError(error.response?.data?.message || "Registration failed.");
+      setSuccess("Registration successful! Redirecting to login...");
+      setTimeout(() => navigate("/login"), 2000);
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed.");
     } finally {
       setLoading(false);
     }
@@ -44,13 +50,19 @@ function SignUp() {
 
   return (
     <div className="bg-[url('/authWallpaper.jpg')] bg-cover bg-center w-full h-screen mt-10 flex justify-center items-center">
-      <div className="w-1/2 h-4/5 bg-gray-900/80 px-16 py-6 rounded-xl shadow-lg">
-        <div className="w-full h-1/5 flex justify-center items-center">
-          <img className="h-20 w-auto rounded-full" src="/logo.png" alt="Logo" />
+      <div className="w-11/12 md:w-2/3 lg:w-1/2 h-auto bg-gray-900/80 px-6 py-10 md:px-16 md:py-12 rounded-xl shadow-lg">
+        <div className="w-full flex justify-center mb-6">
+          <img
+            className="h-20 w-auto rounded-full"
+            src="/logo.png"
+            alt="Logo"
+          />
         </div>
-        <p className="text-blue-700 font-poppins text-center text-2xl mb-2">Welcome to SNAPD Automatic Parking System</p>
-        <p className="text-gray-200 font-poppins text-center text-lg mb-10">
-          Credentials are used for authentication. All saved data will be stored in our database.
+        <p className="text-blue-700 font-poppins text-center text-2xl mb-4">
+          Welcome to SNAPD Automatic Parking System
+        </p>
+        <p className="text-gray-200 font-poppins text-center text-lg mb-6">
+          Sign up to get started with our system. Your credentials will be securely stored in our database.
         </p>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-4">
@@ -89,20 +101,32 @@ function SignUp() {
                 onChange={() => setAcceptedTerms(!acceptedTerms)}
                 className="w-5 h-5 text-blue-600 focus:ring-2 focus:ring-blue-500 rounded cursor-pointer"
               />
-              <label htmlFor="terms" className="text-gray-200 font-poppins text-sm">
-                I accept the <NavLink to='/terms-and-conditions' className="text-blue-500 underline">Terms and Conditions</NavLink>
+              <label
+                htmlFor="terms"
+                className="text-gray-200 font-poppins text-sm"
+              >
+                I accept the{" "}
+                <NavLink
+                  to="/terms-and-conditions"
+                  className="text-blue-500 underline"
+                >
+                  Terms and Conditions
+                </NavLink>
               </label>
             </div>
             <button
-              type="submit"               
+              type="submit"
               disabled={!acceptedTerms || loading}
               className={`${
-                acceptedTerms && !loading ? "bg-blue-900 hover:bg-blue-800" : "bg-gray-600 cursor-not-allowed"
+                acceptedTerms && !loading
+                  ? "bg-blue-900 hover:bg-blue-800"
+                  : "bg-gray-600 cursor-not-allowed"
               } text-white rounded-full px-8 py-4 text-xl font-poppins transition duration-200 ease-in-out`}
             >
-              {loading ? "Submitting..." : "SignUp"}
+              {loading ? "Submitting..." : "Sign Up"}
             </button>
             {error && <p className="text-red-500 mt-4">{error}</p>}
+            {success && <p className="text-green-500 mt-4">{success}</p>}
           </div>
         </form>
       </div>

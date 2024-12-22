@@ -16,10 +16,12 @@ function Slot() {
   // Fetch slots from the backend
   const fetchSlots = async () => {
     try {
-      const response = await axios.get("https://snapd-parking-1.onrender.com/api/v1/slots/");
+      const response = await axios.get(
+        "https://snapd-parking-1.onrender.com/api/v1/slots/"
+      );
       const slotArr = response.data.statuses;
       setSlots(slotArr);
-  
+
       // Update available slots
       const occupiedSlots = slotArr.filter((slot) => slot.isOccupied).length;
       setAvailableSlot(6 - occupiedSlots);
@@ -28,10 +30,10 @@ function Slot() {
     }
   };
 
-  // Fetch slot statuses every 3 seconds
+  // Fetch slot statuses every 1 second
   useEffect(() => {
     fetchSlots(); // Fetch initially
-    const interval = setInterval(fetchSlots, 1000); // Fetch every 1 seconds
+    const interval = setInterval(fetchSlots, 1000); // Fetch every 1 second
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
@@ -42,12 +44,15 @@ function Slot() {
 
   // Render
   return (
-    <div className="bg-primary w-full h-fit mt-20 p-10 pb-20 flex flex-col justify-around gap-6">
-      <div>
-        <p className="font-bosch text-4xl bg-[#E2E2D2] p-4 rounded-full shadow-black shadow-lg h-fit w-1/3 text-center bold">
+    <div className="bg-primary w-full h-fit mt-20 p-6 sm:p-10 pb-10 flex flex-col justify-around gap-6">
+      {/* Available Slots Indicator */}
+      <div className="flex justify-center">
+        <p className="font-bosch text-lg sm:text-2xl md:text-4xl bg-[#E2E2D2] p-3 sm:p-4 rounded-full shadow-black shadow-lg h-fit w-fit text-center font-bold">
           Available Slots: {availableSlot}/8
         </p>
       </div>
+      
+      {/* Floors */}
       <Floor name="First Floor" slotArr={firstSlots} />
       <Floor name="Second Floor" slotArr={secondSlots} />
     </div>

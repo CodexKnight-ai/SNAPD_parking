@@ -1,11 +1,11 @@
 import React from 'react'
 import Model from './Model'
-import Content from './Content'
+// import Content from './Content'
 function Home() {
   return (
     <div className='overflow-x-hidden'>
         <Model/>
-        {/* <Content/>       */}
+
     </div>
   )
 }
